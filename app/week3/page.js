@@ -6,6 +6,7 @@ export default function Home() {
       <div className="">
         <h1 className="text-6xl font-bold text-center text-slate-900  ">
             My Shopping List
+            
         </h1>
       
       <ItemList />
