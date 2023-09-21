@@ -7,7 +7,7 @@ const StudentInfo = () => {
     <div>
       <h1>Nicholas Gonzalez </h1>
       <p>CPRG 306 F</p>
-      <Link href="https://github.com/nicoatsait/cprg306-assignments">
+      <Link className="text-blue-500 hover:underline mr-4" href="https://github.com/nicoatsait/cprg306-assignments">
         Link to GitHub Repository
       </Link>
     </div>
