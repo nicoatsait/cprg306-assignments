@@ -6,14 +6,14 @@ import StudentInfo from './StudentInfo';
 import Navbar from './navbar';
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-fuchsia-800">
+    <main className="text-rose-950 flex min-h-screen flex-col items-center p-24 bg-fuchsia-600">
       <Navbar />
-      <div className="text-center">
-      <h1 className="text-5xl font-bold">
+      <div className="text-center pt-10">
+      <h1 className="text-5xl font-bold pb-2">
           CPRG 306: Web Development 2 - Assignments
       </h1>
       <StudentInfo />
-      <div className="mt-4">
+      <div className="mt-2">
         
       <Link className='"text-blue-500 hover:underline mr-4' href="/week2">
         week2
@@ -23,9 +23,6 @@ export default function Home() {
       </Link>
       </div>
       </div>
-      
-      
-      
     </main>
   )
 }
