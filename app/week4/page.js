@@ -46,7 +46,7 @@ export default function Home() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        className="w-full mt-1 mb-2 border-2 border-gray-300 p-2 rounded-lg font-sans"
+                        className="w-full mt-1 mb-2 border-2 border-gray-500 p-2 rounded-lg font-sans focus:outline-none  focus:ring-1  focus:border-blue-700 focus:ring-blue-700 focus:ring-opacity-75 active:border-blue-700 active:ring-blue-700 active:ring-opacity-75"
                         />
                     </label>
                     <div className="flex justify-between">
@@ -59,7 +59,7 @@ export default function Home() {
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                         required
-                        className="w-20 ml-1 border-2 border-gray-300 p-2 rounded-lg font-sans"
+                        className="w-20 ml-1 border-2 border-gray-500 p-2 rounded-lg font-sans focus:outline-none focus:ring-1 focus:border-blue-700 focus:ring-blue-700 focus:ring-opacity-75 active:border-blue-700 active:ring-blue-700 active:ring-opacity-75"
                         />
                     </label>
                     <label>
@@ -68,7 +68,7 @@ export default function Home() {
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                         required
-                        className="ml-1 border-2 border-gray-300 p-2 rounded-lg font-sans"
+                        className="ml-1 border-2 border-gray-500 p-2 rounded-lg font-sans focus:outline-none focus:ring-1 focus:border-blue-700 focus:ring-blue-700 focus:ring-opacity-75 active:border-blue-700 active:ring-blue-700 active:ring-opacity-75"
                         >
                             <option value="produce">Produce</option>
                             <option value="dairy">Dairy</option>
