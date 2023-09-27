@@ -6,7 +6,7 @@ import StudentInfo from './StudentInfo';
 import Navbar from './navbar';
 export default function Home() {
   return (
-    <main className="text-rose-950 flex min-h-screen flex-col items-center p-24 bg-fuchsia-600">
+    <main className="text-rose-950 flex min-h-screen flex-col items-center p-24 bg-sky-400   ">
       <Navbar />
       <div className="text-center pt-10">
       <h1 className="text-5xl font-bold pb-2">
@@ -20,6 +20,9 @@ export default function Home() {
       </Link>
       <Link className='"text-blue-500 hover:underline mr-4' href="/week3">
         week3
+      </Link>
+      <Link className='"text-blue-500 hover:underline mr-4' href="/week4">
+        week4
       </Link>
       </div>
       </div>
