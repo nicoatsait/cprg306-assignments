@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '../navbar';
 
-export default function NewItem() {
+export default function NewItem({ onAddItem}) {
     
     const [name, setName] = useState("");
     const [quantity, setQuantity] = useState(1);
@@ -21,7 +21,7 @@ export default function NewItem() {
         } else {
             setNameError("");
         }
-        console.log(name, quantity, category);
+        
 
         const item = {
             name: name,
@@ -29,9 +29,8 @@ export default function NewItem() {
             category: category
         };
 
-        console.log(item);
+        onAddItem(item);
 
-        alert('Name: ' + name + '\nQuantity: ' + quantity + '\nCategory: ' + category);
 
         setName("");
         setQuantity(1);
@@ -39,9 +38,9 @@ export default function NewItem() {
     };
 
     return (
-        <main className="flex min-h-screen flex-col p-24 bg-sky-400 ">
+        <main className=" ">
             
-            <div className="mt-10">
+            <div className="mt-0">
                 <form onSubmit={handleSubmit}
                 className="text-black p-2 bg-sky-500 max-w-sm w-full m-auto rounded-xl shadow-md "
                 id="form"
