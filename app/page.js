@@ -24,6 +24,9 @@ export default function Home() {
       <Link className='"text-blue-500 hover:underline mr-4' href="/week4">
         week4
       </Link>
+      <Link className='"text-blue-500 hover:underline mr-4' href="/week5">
+        week5
+      </Link>
       </div>
       </div>
     </main>
