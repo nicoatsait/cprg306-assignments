@@ -22,6 +22,9 @@ export default function Navbar() {
                     <li className="">
                         <a href="/week6" className=" px-3 py-1 shadow-xl text-white bg-violet-800 hover:bg-blue-500 max-w-md rounded-md font-semibold inline-block">Week 6</a>
                     </li>
+                    <li className="">
+                        <a href="/week7" className=" px-3 py-1 shadow-xl text-white bg-violet-800 hover:bg-blue-500 max-w-md rounded-md font-semibold inline-block">Week 7</a>
+                    </li>
                 </ul>
             </div>
         </nav>
