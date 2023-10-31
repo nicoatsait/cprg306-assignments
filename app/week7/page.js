@@ -18,8 +18,12 @@ const handleAddItem = (item) => {
 };
 
 const handleItemSelect = (item) => {
-  // Remove emojis and extra whitespace
-  const cleanedName = item.name.replace(/[^a-zA-Z ]/g, '').trim();
+
+  let cleanedName = item.name.replace(/🥛|🍞|🥚|🍌|🥦|🍗|🍝|🧻|🧼/, '').trim();
+    const commaIndex = cleanedName.indexOf(',');
+    if (commaIndex !== -1) {
+        cleanedName = cleanedName.substring(0, commaIndex);
+    }
   setSelectedItem(cleanedName);
 };
 

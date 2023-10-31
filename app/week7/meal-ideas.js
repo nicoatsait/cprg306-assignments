@@ -16,7 +16,7 @@ export default function MealIdeas({ ingredient }) {
           throw new Error('Failed to fetch meal ideas');
         }
         const data = await response.json();
-        setMeals(data.meals);
+        setMeals(data.meals || []);
       } catch (error) {
         console.error(error);
       }
