@@ -22,6 +22,11 @@ export default function ItemList( props ) {
         return 0;
     });
 
+
+    const handleItemSelect = (item) => {
+        props.onItemSelect(item);   
+    };
+
     return (
         <div>
             <div className="flex justify-between w-1/3">
@@ -46,6 +51,7 @@ export default function ItemList( props ) {
                             name={item.name}
                             quantity={item.quantity}
                             category={item.category}
+                            onSelect={handleItemSelect}
                         />
                     ))}
                 </div>

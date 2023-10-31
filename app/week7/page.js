@@ -4,17 +4,24 @@ import Navbar from '../navbar';
 import ItemList from './item-list';
 import NewItem from './new-item';
 import itemsData from './items.json';
+import MealIdeas from './meal-ideas';
 
 
 export default function Home() {
 
 
 const [items, setItems] = useState(itemsData);
+const [selectedItem, setSelectedItem] = useState('');
 
 const handleAddItem = (item) => {
     setItems((prevItems) => [...prevItems, item]);
 };
 
+const handleItemSelect = (item) => {
+  // Remove emojis and extra whitespace
+  const cleanedName = item.name.replace(/[^a-zA-Z ]/g, '').trim();
+  setSelectedItem(cleanedName);
+};
 
   return (
     <main className="flex min-h-screen flex-col p-24 bg-sky-400   ">
@@ -29,7 +36,17 @@ const handleAddItem = (item) => {
             <NewItem onAddItem={handleAddItem} />
         </div>
         <div>
-          <ItemList items={items} />
+          <div className="flex">
+            <div className="w-1/2 pl-4">
+              <ItemList items={items} onItemSelect={handleItemSelect} />
+            </div>
+            <div className="w-1/2 pl-4 mt-8">
+              <div className="h-[1275px] overflow-y-auto">
+              <MealIdeas ingredient={selectedItem} />
+              </div>
+            </div>
+            
+          </div>
         </div>
      
       </div>

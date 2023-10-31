@@ -1,49 +1,53 @@
-"use client";
-
+'use client';
 import React, { useState, useEffect } from 'react';
 
+export default function MealIdeas({ ingredient }) {
+  const [meals, setMeals] = useState([]);
+  const [selectedMeal, setSelectedMeal] = useState(null);
 
-const MealIdeas = ( {ingredient}) => {
-    const [meal, setMeal] = useState([]);
-
-    async function getMealIdeas(){
-        try {
-            const response = await fetch('https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                
-        });
+  useEffect(() => {
+    // Define the function to fetch meal ideas
+    const getMealIdeas = async (ingredient) => {
+      try {
+        const response = await fetch(
+          `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+        );
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+          throw new Error('Failed to fetch meal ideas');
         }
+        const data = await response.json();
+        setMeals(data.meals);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-            const data = await response.json();
-            setMeal(data.meals);
-            console.log(data.meals);
-        } catch (error) {
-            console.error("ERROR:",error);
-        }
-
+    if (ingredient) {
+      getMealIdeas(ingredient);
     }
-    useEffect(() => {
-        getMealIdeas();
-    }, [ingredient]);
+  }, [ingredient]);
 
-    return(
-        <div>
-            <h1>Meal Ideas</h1>
-            {meal.map((meal) => (
-                <div key={meal.idMeal}>
-                    <h2>{meal.strMeal}</h2>
-                    <img src={meal.strMealThumb} alt={meal.strMeal} />
-                </div>
-            ))}
+  const handleMealSelect = (meal) => {
+    setSelectedMeal(meal);
+  };
+
+  return (
+    <div>
+      <h2>Meal Ideas</h2>
+      <ul>
+        {meals.map((meal) => (
+          <li key={meal.idMeal} onClick={() => handleMealSelect(meal)}>
+            {meal.strMeal}
+          </li>
+        ))}
+      </ul>
+      {selectedMeal && (
+        <div className='mt-5'>
+          <h3>{selectedMeal.strMeal}</h3>
+          
+          <img src={selectedMeal.strMealThumb} alt={selectedMeal.strMeal} />
         </div>
-    )
-
+      )}
+    </div>
+  );
 }
-
-export default MealIdeas;
-
