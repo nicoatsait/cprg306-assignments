@@ -14,9 +14,24 @@ export default function Home() {
 const [items, setItems] = useState(itemsData);
 const [selectedItem, setSelectedItem] = useState('');
 
-const handleAddItem = (item) => {
-    setItems((prevItems) => [...prevItems, item]);
+
+
+const loadItems = async () => {
+  const userId = 'user.uid'; // replace with actual user id
+  const itemsData = await getItems(userId);
+  setItems(itemsData);
 };
+
+useEffect(() => {
+  loadItems();
+}, []);
+
+const handleAddItem = async (item) => {
+  const userId = 'user.uid'; // replace with actual user id
+  const id = await addItem(userId, item);
+  setItems((prevItems) => [...prevItems, { ...item, id }]);
+};
+
 
 const handleItemSelect = (item) => {
 

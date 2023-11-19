@@ -14,7 +14,7 @@ export default function NewItem({ onAddItem}) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-s
+
         if (name.trim() === "") {
             setNameError("Please enter an item name.");
             return;
