@@ -1,37 +1,43 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ItemList from './item-list';
 import NewItem from './new-item';
-
+import { getItemList } from '../_services/shopping-list-service';
+import { addNewItem } from '../_services/shopping-list-service';
+import { useUserAuth } from '../_utils/auth-context';
 import MealIdeas from './meal-ideas';
 import Navbar from './navbar';
 
 
 export default function Home() {
 
-
-const [items, setItems] = useState(itemsData);
+const { user, githubSignIn, firebaseSignOut } = useUserAuth();
+const userId = user ? user.uid : null;
+const [items, setItems] = useState([]);
 const [selectedItem, setSelectedItem] = useState('');
 
 
 
-const loadItems = async () => {
-  const userId = 'user.uid'; // replace with actual user id
-  const itemsData = await getItems(userId);
-  setItems(itemsData);
-};
-
 useEffect(() => {
-  loadItems();
-}, []);
+  const fetchData = async () => {
+    if (userId) {
+      try {
+      const itemsFromDb = await getItemList(userId); 
+      setItems(itemsFromDb);
+    } catch (error) {
+      console.error('Error fetching items:', error);
+    }
+    }
+    
+  };
+  fetchData();
+}, [userId]);
 
-const handleAddItem = async (item) => {
-  const userId = 'user.uid'; // replace with actual user id
-  const id = await addItem(userId, item);
-  setItems((prevItems) => [...prevItems, { ...item, id }]);
+
+const handleAddItem = (item) => {
+    setItems((prevItems) => [...prevItems, item]);
 };
-
 
 const handleItemSelect = (item) => {
 
@@ -54,7 +60,7 @@ const handleItemSelect = (item) => {
         </h1>
       
         <div className='pb-5'>
-            <NewItem onAddItem={handleAddItem} />
+            <NewItem onAddItem={handleAddItem} userId={userId}/>
         </div>
         <div>
           <div className="flex">

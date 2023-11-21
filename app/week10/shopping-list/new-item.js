@@ -2,19 +2,24 @@
 import React, { useState } from 'react';
 
 import Link from 'next/link';
+import { addNewItem } from '../_services/shopping-list-service';
+import { useUserAuth } from '../_utils/auth-context';
 
 
-export default function NewItem({ onAddItem}) {
+
+export default function NewItem({ onAddItem, userId}) {
     
+    const { user, githubSignIn, firebaseSignOut } = useUserAuth();
+
     const [name, setName] = useState("");
     const [quantity, setQuantity] = useState(1);
     const [category, setCategory] = useState("produce");
     const [nameError, setNameError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-s
+
         if (name.trim() === "") {
             setNameError("Please enter an item name.");
             return;
@@ -29,7 +34,14 @@ s
             category: category
         };
 
-        onAddItem(item);
+        if (userId) {
+            try {
+              await addNewItem(userId, item);
+                onAddItem(item);
+            } catch (error) {
+              console.error('Error adding new item:', error);
+            }
+          }
 
 
         setName("");

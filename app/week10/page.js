@@ -24,8 +24,10 @@ const Page = () => {
             <p>
               Welcome, {user.displayName} ({user.email})
             </p>
+            <img className='w-16 ' src={user.photoURL} />
+            <p>Your user id is: {user.uid} {user.displayName}</p>
             <button onClick={firebaseSignOut}>Logout</button>
-            <a className='ml-2' href="/week8/shopping-list">Go to Shopping List</a>
+            <a className='ml-2' href="/week10/shopping-list">Go to Shopping List</a>
           </div>
         ) : (
           <div>
